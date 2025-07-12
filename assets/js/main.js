@@ -43,7 +43,8 @@ function getTodos() {
   // useless unless `tasks` takes its own module.
 }
 
-function updateTodo() {
+function updateTodo(task) {
+  
   renderTasks()
   
 }

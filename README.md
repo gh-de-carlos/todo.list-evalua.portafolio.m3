@@ -5,7 +5,7 @@
 
 ## 🚀 OBJETIVO
 
-Desarrollar una aplicación de lista de tareas (To-Do List) usando JavaScript. El objetivo de este proyecto es integrar los conocimientos adquiridos sobre JavaScript y aplicarlos de manera práctica en la creación de una solución interactiva. Durante el desarrollo, se utilizarán diversas características fundamentales de JavaScript para estructurar, controlar y manejar el flujo de datos en la aplicación.
+Desarrollar una aplicación de lista de tareas (To-Do List) usando JavaScript. El objetivo de este proyecto es integrar los conocimientos adquiridos sobre JavaScript y aplicarlos de manera práctica en la creación de una solución interactiva. Durante el desarrollo, se utilizarán diversas características fundvamentales de JavaScript para estructurar, controlar y manejar el flujo de datos en la aplicación.
 
 ## 📃 INSTRUCCIONES
 
@@ -20,6 +20,7 @@ En un archivo de tu repositorio (puede ser el README .md o un archivo aparte), d
     * Qué es JavaScript y su rol en el desarrollo de aplicaciones web.
     * Las ventajas de usar JavaScript para crear aplicaciones interactivas en el navegador.
     * Ejemplos de funcionalidades que solo pueden ser posibles gracias al uso de JavaScript (como la interactividad en formularios, listas dinámicas, validación en tiempo real, etc.).
+    * Puedes leer la explicación [**ACÁ**][1].
 2. **Utilizar variables simples y sentencias condicionales para resolver un problema básico**  
 Implementa una funcionalidad en la que el usuario pueda agregar tareas a una lista y, al intentar agregar una tarea vacía, se
 muestre un mensaje de advertencia.
@@ -63,8 +64,28 @@ Tu proyecto debe contener los siguientes elementos:
 * **Accesibilidad**: Considera agregar etiquetas y descripciones accesibles, como el uso de etiquetas aria para accesibilidad.
 * **Comentarios**: Es importante que tu código esté bien comentado, especialmente las partes que implementan lógica importante o compleja.
 
-## 📁 ESTRUCTURA DEL PROYECTO
 
+## 👀 NOTAS
+
+El esquema elegido para la tarea es el siguiente:
+```Js
+{
+  creationDate,     // Fecha de creación de la tarea
+  task,             // Cuerpo de la tarea. Texto plano por ahora
+  important,        // Podría ser para mostrar un indicador visual
+  color,            // Para darles colores distintos/categorías
+  done,             // Para marcar si está completada
+  deadline,         // Para crear una fecha límite
+  id,               // Id para la tarea. Math.random 1000000-9999999
+  notes,            // Para notas sobre la tarea (expanded features)
+  tags              // Un arreglo de etiquetas (expanded features)
+}
+```
+
+De todas las anteriores, la más importante es `task.task` porque contiene el cuerpo mismo de la tarea y debe validarse que esté vacío al crearse.
+
+
+## 📁 ESTRUCTURA DEL PROYECTO
 ```
 📁 esta-carpeta/  
 ├── index.html  
@@ -81,9 +102,22 @@ Tu proyecto debe contener los siguientes elementos:
         └── blablah
 ```
 
-## 👀 NOTAS
+## EL USO DE JAVASCRIPT EN EL DESARROLLO WEB
 
-- Joe Pino...
+### ¿Qué es? ¿Cuál es su rol?
+
+Javascript es un lenguaje de programación que nació en 1995 como un pequeño lenguaje de _scripting_ para hacer manipulaciones del contenido de un sitio web que hicieran la interacción del usuario más dinámica. Nació como parte de una estrategia de Netscape para diferenciarse de la compentencia pero luego creció y se extendió hasta convertirse en el lenguaje de propósito general más usado en el mundo, en parte gracias a su uso nativo en todos los navegadores web. 
+
+Su rol en el navegador es ser una capa intermedia entre un programador y el usuario final de un sitio o aplicación web. Provee al programador de herramientas con las que este puede manipular prácticamente cada aspecto de aquello que está contenido dentro de una pestaña del navegador, facultándole para responder a cualquier interacción del usuario, como llenar formularios, mover el mouse sobre un elemento, hacer click, cambiar el tamaño de la página, pero también otros como crear interfaces complejas en 3D liberando todas las capacidades de los navegadores y hardware modernos (conocer tu ubicación para mantener actualizado a tu conductor en Uber, saber qué frecuencia tiene tu monitor para ajustar animaciones a su refresco y así optimizar recursos, entre muchas otras).
+
+
+### ¿Qué beneficios tiene?
+
+### Funcionalidades del browser que dependen de Javascript.
+1. Cambiar el contenido de una aplicación en base a las deciciones del usuario.
+2. Poder hacer llamados a servicios fuera de nuestro computador o del servidor donde se aloja nuestra aplicación para acceder a datos y servicios.
+3. Controlar lo que sucede cuando se envía un formulario de forma dinámica, de tal manera que mejore la experiencia de uso del consumidor final. Un formulario puede ser validado y enviado directamente por html pero su llenado y feedback dinámico no es posible sin Javascript.
+4. Hacer uso de características que hoy nos parecen naturales, como arrastrar y soltar elementos, o copiar contenido en el portapapeles.
 
 ## 📖 DOCUMENTACIÓN CONSULTADA
 * [][2]
@@ -97,7 +131,7 @@ Tu proyecto debe contener los siguientes elementos:
 
 <!-- Enlaces referenciados arriba -->
 [0]:./assets/utils/mockup.png
-[1]:
+[1]:#el-uso-de-javascript-en-el-desarrollo-web
 [2]:
 [3]:
 [4]:

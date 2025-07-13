@@ -32,20 +32,102 @@ La funcionalidad básica será poder crear tareas que tienen por cuerpo principa
 }
 ```
 
-- La aplicación debe implementar un crud básico para:  
-  1. crear una tarea.  
-  1. mostrar las tareas.   
+### Requisitos funcionales iniciales
+
+- al cargarse debe mostrar una tarea de ejemplo si es no hay tareas que mostrar. Esta tarea debería ilustrar por su diseño, las _features_ disponibles para cualqueir tarea.
+- debe implementar las funcionalidades básicas para crear, mostrar, modificar y eliminar notas.
+- La app **debe implementar un CRUD básico** para:  
+  1. crear una tarea.
+  1. mostrar las tareas. 
   1. modificar una tarea.  
   1. eliminar una tarea. 
+- La creación debería estar a cargo de un **formulario muy estilizado, que simule una tarjeta**.
+- El proceso de modificar una tarjeta: acá tengo mis dudas.
+  - Me gustaría hacer del contenido de las tarjetas `editable` cuando se active un **ícono de editar** para implementar una funcionalidad de modificación _in-place_, pero no sé qué tan complejo sea de implementar.
+  - Si no, podría utilizar el mismo formulario utilizado para la creación de la tarea pero, debería bloquear la modificación de la fecha de creación `creationDate`.
+- El usuario no será conciente de que las tarjetas tiene `id` pues será de uso interno.
+- Haré `type="module"` en el `assets/js/main.js` porque de esta manera puedo organizar mejor el código, implementar buenas prácticas (`"use strict"`, aislamiento de `scopes`) y porque ya no hay justificación ni preocupación de que un browser no los soporte.
+- Quiero intentar implementar el uso de `localStorage` para almacenar las tareas.
+- Cada tarea debería mostrar en el MVP: 
+  - la tarea, 
+  - un color de background, 
+  - un marcador de importante,
+  - un selector de "terminado",
+  - la fecha de su creación,
+  - una fecha opcional límite,
+  - ¿un botón de editar?
 
-- La aplicación debería presentar siempre una tarjeta de ejemplo que ilustre las capacidades y características de las notas.
-- La creación debería estar a cargo de un formulario muy estilizado, que simule una tarjeta. También el proceso de modificar una tarjeta debería utilizar este componente pero bloqueando aquellos campos que no deberían ser modificables. En este momento, y según yo, debido a que no tienen un caso de uso realista que justifique su modificación estarían bloqueados en el **UPDATE**:
-    1. La fecha de creación,
-    2. El id (que siempre estará oculto al usuario)
+La app está diseñada para implementar posteriormente el campo "detalle" y las etiquetas + buscador.
 
-    Todo lo demás, debería poder modificarse.
-- seguir...
 
-### Arquitectura
-- Haré un producto que hará uso de módulos `type="module"` porque de esta manera puedo organizar mejor el código y porque ya no hay justificación ni preocupación de que un browser no los soporte.
-- Quiero intentar implementar algunas ideas como usar `localStorage` para almacenar las tareas. 
+## ARQUITECTURA y DISEÑO
+
+### UI y diseño
+
+(This part of the work is currently in "brainstorming" stage.)
+
+- La vista debe ser un "tablero" con un navbar para features posteriores.
+- Habrá un footer muy discreto para presentar la marca personal.
+- La vista se irá llenado de tarjetas.
+- La tarjeta debería presentar:
+  - un cuerpo principal donde escribir/mostrar la tarea.
+  - un selector de colores seleccionado. (no libre)
+  - un ícono de "importante"
+  - un sector mostrando la fecha de creación en formato "usuario amigable". (Ver más)
+  - un selector de "terminado"
+  - un sector mostrndo la fecha límite
+  - un ícono de "editar"
+  - Eventualmente:
+    - debería haber un pequeño footer donde se pueda expandir el detalle.
+    - debería tener un espacio con las etiquetas. 
+- El formato de fecha "amable con el usuario" debería renderizar el timestamp de la siguiente manera:
+  - Cuando la tarjeta se ha creado hace menos de una hora mostrar "recién".
+  - Cuando se ha creado hoy (día calendario) mostrar "hoy".
+  - Cuando se ha creado el día anterior mostrar "ayer".
+  - Cuando se ha creado entre 2 y 30 días atrás mostrar "hace X días"
+  - Cuando se ha creado hace más de 30 días mostrar la fecha "el DD-MM-YYYY"
+
+
+### 📁 Estructura general del proyecto
+
+```
+📁 todoApp/  
+├── index.html  
+├── favicon.png  
+├── README.md  
+└── 📁assets/  
+    ├── 📁css/  
+    ├── 📁img/  
+    └── 📁js/
+        ├── main.js
+        └── 📁lib/
+            ├── dateFormatter.js
+            ├── tasksLoader.js  
+            ├── renderer.js  
+            ├── ....  
+            └── ....  
+```
+
+- `main.js` es el archivo inicial cargado por `index.html` que importa y orquesta la funcionalidad.
+- `dateFormatter.js` es un archivo que formatea `creationDate` a "usuario amigable".
+- `tasksLoader.js` es un módulo que carga las tareas, decidiendo si cargarlas desde el `localStorage` o devolver un objeto inicial de ejemplo.
+- `renderer.js` deberia tener la lógica de creación de la card. No se si con _template literals_ de js o con HTML `<template>`.
+
+
+### Naming
+
+```Js
+// assets/js/main.js
+```
+
+```Js
+// assets/js/lib/dateFormatter.js
+```
+
+```Js
+// assets/js/lib/tasksLoader.js
+```
+
+```Js
+// assets/js/lib/renderer.js
+```

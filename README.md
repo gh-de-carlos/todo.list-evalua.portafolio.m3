@@ -77,7 +77,7 @@ El esquema elegido para la tarea es el siguiente:
   done,             // Para marcar si está completada
   deadline,         // Para crear una fecha límite
   id,               // Id para la tarea. Math.random 1000000-9999999
-  notes,            // Para notas sobre la tarea (expanded features)
+  detail,           // Para un detalle sobre la tarea (expanded features)
   tags              // Un arreglo de etiquetas (expanded features)
 }
 ```

@@ -1,3 +1,5 @@
+
+
 # PROCESO DE CREACIÓN DE "8FoldTodo"
 
 Como no quiero seguir haciendo proyectos de juguete que no tienen un futuro realista desplegados, este es mi intento de hacer de esta entrega algo modular y progresivo. El objetivo no es entregar una aplicación de nivel industrial, pero si adquirir el hábito de hacer cada vez mejores entregas con código pensado específicamente en ser vendido o usado en producción. 
@@ -6,7 +8,24 @@ Orden y claridad con los focos prioritatrios en esta etapa de mi desarrollo como
 
 👉 **ADVERTENCIA**: no TLDR provided!
 
+
 Este archivo documenta todo el proceso de diseño y creación de esta app y es exhaustivo, porque es un documento de uso personal. 
+
+## CONTENIDO
+
+* [**¿QUÉ ES?**](#qué-es)
+* [**PRIMEROS PASOS**](#primeros-pasos)
+    * [Funcionalidad básica](#funcionalidad-básica)
+    * [Requisitos iniciales](#requisitos-funcionales-iniciales)
+* [**ARQUITECTURA Y DISEÑO**](#arquitectura-y-diseño)
+    * [UI y diseño: primeras ideas](#ui-y-diseño)
+    * [Ciclo de vida de la aplicación](#ciclo-de-vida-general-de-la-aplicación)
+    * [Gestión y ciclo de vida de una tarea](#gestión-y-ciclo-de-vida-de-tareas)
+    * [Naming: módulos y funciones](#naming)
+    * [Estructura general del proyecto](#-estructura-general-del-proyecto)
+* [**DESARROLLO**](#desarrollo)
+    * [Fase 1 - Creación y gestión de tareas sin UI](#fase-1-creación-y-gestión-de-tareas---no-ui)
+
 
 ## ¿QUÉ ES?
 
@@ -20,15 +39,16 @@ La funcionalidad básica será poder crear tareas que tienen por cuerpo principa
 
 ```Js
 {
-  creationDate,     // Fecha de creación de la tarea
-  task,             // Cuerpo de la tarea. Texto plano por ahora
-  important,        // Podría ser para mostrar un indicador visual
   color,            // Para darles colores distintos/categorías
-  done,             // Para marcar si está completada
+  creationDate,     // Fecha de creación de la tarea
   deadline,         // Para crear una fecha límite
-  id,               // Id para la tarea. Math.random 1000000-9999999
   detail,           // Para detalles sobre la tarea (expanded features)
+  done,             // Para marcar si está completada
+  id,               // Id para la tarea. Math.random 1000000-9999999
+  important,        // Podría ser para mostrar un indicador visual
+  state,            // ENUM-like, SAVED, SAVING, FOCUSED, DELETED, ARCHIVED, etc
   tags              // Un arreglo de etiquetas (expanded features)
+  task,             // Cuerpo de la tarea. Texto plano por ahora
 }
 ```
 
@@ -87,12 +107,92 @@ La app está diseñada para implementar posteriormente el campo "detalle" y las 
   - Cuando se ha creado entre 2 y 30 días atrás mostrar "hace X días"
   - Cuando se ha creado hace más de 30 días mostrar la fecha "el DD-MM-YYYY"
 
+### Ciclo de vida general de la aplicación
+
+1. El usuario carga la página.
+2. La aplicación invoca el método de `tasksService.js` que carga la respuesta:
+  1. ¿Existe la key en `localStorage`? Carga el listado.
+  2. ¿No existe? carga la tarjeta de ejemplo inicial.
+3. Loop: gestiona tareas en detalle [**ACÁ**][0]
+
+### Gestión y ciclo de vida de tareas
+
+1. **Crear una tarea**
+  1. El usuario utiliza _algún elemento de control_ para lanzar este evento. ¿➕?
+  2. Un `formulario/input` en su forma más simple o un elemento editable `contenteditable` es desplegado para el usuario mostrando las características disponibles en la versión.
+  3. El usuario crea su tarea, _utilizando íconos y controles_ para _habilitar todas las features booleanas_ o con selección fija.
+  4. Un evento _input guarda en un buffer local el texto_ a medida que el usuario escribe, _esperando un tiempo determinado o el uso de un control para confirmar la creación_.
+  5. Se invoca el método de `tasksService.js` que realiza la validación y creación de la tarea, agregándola al localStorage y realizando _hydrate_ de tasks. **CONSIDERAR FLUJO**: `local <--> localStorage`
+  6. Finaliza la creación con la _actualización de la vista de modo silencioso, sin recargarla_, invocando el método de `renderer.js` si es necesario.
+2. **Eliminar una tarea**
+  1. El usuario realiza clic en algún control destinado a eliminar la tarjeta ¿🗑️?.
+  2. La interfaz solicita confirmación con un modal[-like].
+    2. **CONFIRMA**: Se invoca al método de `tasksService.js` que busca el id de la tarea y la elimina del entorno local, _sobreescribiendo luego el localStorage_.
+    3. **NO CONFIRMA**: cancela la operación sin solicitar más eventos.
+3. **Modificar una tarea**:
+  1. El usuario activa un control destinado para este fin ¿📝?.
+  2. Se repite el **mismo proceso 1.2-1.6**, _sobreescriendo la posición en el arreglo local_ de la tarea en base a su id.
+  3. Se invoca al método que actualiza la vista ¿`renderer.js`?
+
+
+### Naming
+
+**EN ESTADO PREMATURO AÚN**: aún debo conciliar tareas considerando las features realistas que quiero implemntar y el ciclo de vida de desarrollo hasta completarlas.
+
+```Js
+// assets/js/main.js
+// main orchestrator and UI event handling
+
+// assets/js/lib/dateFormatter.js
+formatDate(date);
+
+// assets/js/lib/tasksService.js
+initTasks();
+resetTasks();
+createTask(task);
+updateTask(task);         // still choosing concerns
+saveTask(task);           // still choosing concerns
+deleteTask(id);       
+archiveTask(id);       
+
+// assets/js/lib/alertManager.js
+showNotification();
+queueNotification();
+
+// assets/js/lib/taskValidator.js
+validateNewTaskt(task);   // still choosing concerns
+validateTask(task)        // still choosing concerns
+
+// assets/js/lib/renderer.js
+renderNewTask();          // still choosing concerns
+updateTaskView();         // still choosing concerns
+refreshTask();            // still choosing concerns
+removeTask();             // still choosing concerns
+hideTask();               // still choosing concerns
+renderTaskCard();
+updateTaskCard();
+removeTaskCard();
+
+// assets/js/lib/deadlineWatcher.js
+scheduleDeadline()
+pollDeadlines()
+triggerAlert()
+
+// assets/js/lib/taskEditor.js
+enableEditing(task);
+
+// assets/js/lib/taskStateManagement.js 
+transitionState()
+
+// completely optional module.
+uiDecorator.applyStateStyles()
+```
 
 ### 📁 Estructura general del proyecto
 
 ```
 📁 todoApp/  
-├── index.html  
+├── index.html                        // script:assets/js/main.js 
 ├── favicon.png  
 ├── README.md  
 └── 📁assets/  
@@ -101,33 +201,55 @@ La app está diseñada para implementar posteriormente el campo "detalle" y las 
     └── 📁js/
         ├── main.js
         └── 📁lib/
-            ├── dateFormatter.js
-            ├── tasksLoader.js  
-            ├── renderer.js  
+            ├── dateFormatter.js      // formateo amigable de creationDate
+            ├── tasksService.js       // controla toda la capa de almacenamiento        
+            ├── renderer.js           // templates y DOM rendering
             ├── ....  
             └── ....  
 ```
 
-- `main.js` es el archivo inicial cargado por `index.html` que importa y orquesta la funcionalidad.
-- `dateFormatter.js` es un archivo que formatea `creationDate` a "usuario amigable".
-- `tasksLoader.js` es un módulo que carga las tareas, decidiendo si cargarlas desde el `localStorage` o devolver un objeto inicial de ejemplo.
-- `renderer.js` deberia tener la lógica de creación de la card. No se si con _template literals_ de js o con HTML `<template>`.
+## DESARROLLO
 
-
-### Naming
+### Fase 1: creación y gestión de tareas - NO UI
 
 ```Js
-// assets/js/main.js
+// Crear un uuid.v4 sin librerías
+self.crypto.uuid();
 ```
+-------------------------------------------------------------------
+[0]:#gestión-y-ciclo-de-vida-de-tareas
+-------------------------------------------------------------------
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: auto;
+    padding: 2em;
+    color: #333;
+    background: linear-gradient(to bottom, #fff, #f3f3f3);
+  }
+  h1, h2, h3 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.3em;
+  }
+  code {
+    background: #aaa;
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+    color: red;
+    font-family: Consolas, monospace; 
+  }
 
-```Js
-// assets/js/lib/dateFormatter.js
-```
-
-```Js
-// assets/js/lib/tasksLoader.js
-```
-
-```Js
-// assets/js/lib/renderer.js
-```
+  @media print {
+  body {
+    background: none;
+    color: black;
+    font-size: 12pt;
+    padding: 1in;
+  }
+  a::after {
+    content: " (" attr(href) ")";
+  }
+}
+</style>

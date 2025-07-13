@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Markdown Viewer</title>
+  <link rel="stylesheet" href="markdown.css" />
+</head>
+<body>
+  <h1>🗂️ Markdown Switcher</h1>
+  <select id="fileSelector">
+    <option value="../../../README.md" selected>README</option>
+    <option value="../DOCS.md">DOCs</option>
+  </select>
+
+  <div id="content"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const contentEl = document.getElementById('content');
+    const selector = document.getElementById('fileSelector');
+
+    function renderMarkdown(file) {
+      fetch(file)
+        .then(res => res.text())
+        .then(md => {
+          contentEl.innerHTML = marked.parse(md);
+        });
+    }
+
+    selector.addEventListener('change', () => {
+      renderMarkdown(selector.value);
+    });
+
+    // Render default
+    renderMarkdown(selector.value);
+  </script>
+</body>
+</html>

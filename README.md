@@ -130,19 +130,21 @@ Su rol en el navegador es ser una capa intermedia entre un programador y el usua
 
 ### Commit pendiente
 
-- add: proyecto base funcionando
-- se crea frontend y verifica carga de tarjetas
-- se verifica funcionamiento del almacenamiento en localStorage
-- se deciden estilos y arquitectura base del cliente
-- se implementa funcionalidad de fecha "amigable"
-- se ha utilizado `Date()` extensivamente para crear fechas pero,
-- se ha utilizado `self.crypto.randomUUID()` para crear los `id`'s.
-- se utiliza `Math` para evaluar lógica presentacional (acomodar tarjetas) y crear tareas ficticias de ejemplo para la primera vez que el usuario carga la página.
+- Refactoriza app.js para modularizar utilidades y limpiar el código:
+    - se crea js/util/ y los archivos: friendlyDateFormatter.js, microTools.js
+    - se mueve el código de tiltCard y selectBg a microTools.js
+    - friendlyDateFormatter es una copia de la utilidad en mis scripts personales.
+    - se mueven funciones que lanzan el menú contextual showMenu a microTools.js
+    - solo se dejan en app: el contexto local, DOM, render y los listeners necesarios
+- Se comenta appDraft.js y se mueve a assets/utils/
+- Se agregan estilos al menú contextual
+- Se corrige el evento click sobre el menú elipsis.
+- Se agregan `id`'s a las opciones del menú para crear la funcionalidad.
 
-### TODO's:
+### PENDIENTES:
+- TODO Implementar método para eliminar tarjetas **(4.2 - 3.2)** refrescando la vista.
+- TODO Implementar método para agregar tarea **(4.1 - 2.1)** validando cuando intente crear una vacía **(2.2)**.
 
-- Implementar método para agregar tarea **(4.1 - 2.1)** validando cuando intente crear una vacía **(2.2)**.
-- Implementar método para eliminar tarjetas **(4.2 - 3.2)** refrescando la vista.
 
 
 <!-- Enlaces referenciados arriba -->
@@ -153,6 +155,18 @@ Su rol en el navegador es ser una capa intermedia entre un programador y el usua
 [4]:
 [5]:
 [6]:
+
+**OPCIONES DEL MENÚ CONTEXTUAL**
+```html
+<div id="custom-menu">
+    <p class="custom-menu__item" id="menu_edit">Editar</p>
+    <p class="custom-menu__item" id="menu_done">¡Está lista!</p>
+    <p class="custom-menu__item" id="menu_important">Es importante</p>
+    <p class="custom-menu__item" id="menu_timer">Agregar timer</p>
+    <p class="custom-menu__item" id="menu_color">Elegir color</p>
+    <p class="custom-menu__item" id="menu_remove">Eliminar</p>
+</div>
+```
 
 **TABLA DE CLASES PARA BACKGROUNDS**
 | Hex Code Data  | class                   |

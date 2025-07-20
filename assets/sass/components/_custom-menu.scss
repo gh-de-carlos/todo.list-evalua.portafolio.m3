@@ -6,11 +6,23 @@
   padding: 0.5rem;
   border-radius: 4px;
   display: none;
-  width: 130px;
+  width: 140px;
+  // width: fit-content;
   height: fit-content;
 }
 
 .custom-menu__item {
   font-size: .8rem;
-  margin-top: .5rem;
+  padding: .25rem;
+}
+
+.custom-menu__item:hover {
+  position: relative;
+  z-index:1001;
+  background-color: white;
+  color: crimson;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  box-shadow: 0 0 2px 2px white;
 }

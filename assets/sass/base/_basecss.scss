@@ -1,17 +1,21 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+// IMPORTS, VARIABLES & MICRO RESET
+// @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
-:root {
-  --gap: 25px;
-}
+// :root {
+//   --gap: 25px;
+// }
 
-body {
-  padding: 0 1rem;
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+@use './root';
+
+body { 
+  padding: 0 1rem; 
   background-color: #3d3d3d;
-  font-family: "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header, footer {
@@ -22,10 +26,10 @@ header, footer {
 }
 
 .dashboard {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: var(--gap);
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+  grid-template-rows: repeat(5, 1fr); 
+  gap: var(--gap); 
   background-color: #cca83cee;
   padding: 50px;
   border-radius: 8px;
@@ -35,13 +39,17 @@ header, footer {
 
 .task-card, .edit-mode {
   position: relative;
+    
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
   padding: 0;
   outline: 1px solid black;
   break-inside: avoid;
+  
   min-height: 150px;
+  
   background-color: #f1df00;
   font-size: 1.25rem;
   border-radius: 8px;
@@ -54,32 +62,32 @@ header, footer {
 .card-options {
   margin: 0;
   padding: 0;
-  font-size: 0.75rem;
+  font-size: .75rem;
   text-align: end;
 }
 
 .card-body {
   flex-grow: 1;
-  padding-top: 0.25rem;
+  padding-top: .25rem;
 }
 
 .card-header {
   border-bottom: 1px solid #00000044;
-  padding: 0.25rem 0;
+  padding: .25rem 0;
   padding-right: 0.5rem;
 }
 
 .card-header--square {
   border-bottom: none;
-  padding-top: 0.25rem;
+  padding-top: .25rem;
   padding-right: 0.25rem;
 }
 
 .card-footer {
   border-top: 1px solid #00000044;
-  padding: 0.5rem 0;
+  padding: .5rem 0;
   padding-right: 0.5rem;
-  font-style: italic;
+  font-style: italic;  
 }
 
 .colored {
@@ -93,7 +101,7 @@ header, footer {
 .fa-solid,
 .fa-regular {
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1rem;  
 }
 
 /* SOLO PARA EDITOR */
@@ -101,8 +109,8 @@ header, footer {
   border: none;
   outline: none;
   background-color: transparent;
-  /*   width: 200px; */
-  /*   height: fit-content; */
+/*   width: 200px; */
+/*   height: fit-content; */
   resize: none;
   padding: 1rem;
   font-size: 1.125rem;
@@ -111,51 +119,16 @@ header, footer {
 }
 
 /* MENU CONTEXTUAL */
-/* background color user-choosen */
-.task-card--rose {
-  background-color: #F8C8DC;
-}
 
-.task-card--sky {
-  background-color: #B7D6E8;
-}
-
-.task-card--honey {
-  background-color: #FAF3DD;
-}
-
-.task-card--sage {
-  background-color: #DCE3C5;
-}
-
-.task-card--honeydew {
-  background-color: #C3E8BD;
-}
-
-.task-card--peach {
-  background-color: #EAD7C3;
-}
-
-/* default color not meant to be chosen */
-.task-card--yellow {
-  background-color: #F1DF00;
-}
-
-#custom-menu {
-  position: absolute;
-  z-index: 1000;
-  background: crimson;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 4px;
-  display: none;
-  width: 130px;
-  height: fit-content;
-}
-
-.custom-menu__item {
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-}
-
-/*# sourceMappingURL=style.css.map */
+// #custom-menu {
+//   position: absolute;
+//   z-index: 1000;
+//   background: crimson;
+//   color: white;
+//   padding: 0.5em;
+//   border-radius: 4px;
+//   display: none;
+//   width: 130px;
+//   height: fit-content;
+//   font-size: .9rem;
+// }

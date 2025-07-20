@@ -1,0 +1,16 @@
+#custom-menu {
+  position: absolute;
+  z-index: 1000;
+  background: crimson;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: none;
+  width: 130px;
+  height: fit-content;
+}
+
+.custom-menu__item {
+  font-size: .8rem;
+  margin-top: .5rem;
+}

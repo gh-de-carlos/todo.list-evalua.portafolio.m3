@@ -1,0 +1,30 @@
+// 1. Abstracts (tools & settings first)
+// @use 'abstracts/variables';
+// @use 'abstracts/functions';
+// @use 'abstracts/mixins';
+
+// 2. Base (element resets & standardization)
+@use 'base/reset';
+// @use 'base/typography';
+@use 'base/basecss';
+@use 'base/bg-colors';
+
+// 3. Layout (global scaffolding)
+// @use 'layout/grid';
+// @use 'layout/header';
+// @use 'layout/footer';
+
+// 4. Components (reusable chunks)
+@use 'components/custom-menu';
+// @use 'components/cards';
+
+// 5. Pages (single-view styles)
+// @use 'pages/home';
+// @use 'pages/about';
+
+// 6. Themes (optional variants)
+// @use 'themes/dark';
+// @use 'themes/light';
+
+// 7. Vendors (external packages)
+// @use 'vendors/bootstrap';

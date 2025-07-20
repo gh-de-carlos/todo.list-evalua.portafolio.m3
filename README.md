@@ -17,35 +17,34 @@ Recuerda que este proyecto formará parte del registro de evidencias de tu porta
 
 1. **Explicar las características fundamentales de JavaScript para el desarrollo web**  
 En un archivo de tu repositorio (puede ser el README .md o un archivo aparte), deberás incluir una breve explicación sobre:
-    * Qué es JavaScript y su rol en el desarrollo de aplicaciones web.
-    * Las ventajas de usar JavaScript para crear aplicaciones interactivas en el navegador.
-    * Ejemplos de funcionalidades que solo pueden ser posibles gracias al uso de JavaScript (como la interactividad en formularios, listas dinámicas, validación en tiempo real, etc.).
-    * Puedes leer la explicación [**ACÁ**][1].
+    * 👍 Qué es JavaScript y su rol en el desarrollo de aplicaciones web.
+    * 👍 Las ventajas de usar JavaScript para crear aplicaciones interactivas en el navegador.
+    * 👍 Ejemplos de funcionalidades que solo pueden ser posibles gracias al uso de JavaScript (como la interactividad en formularios, listas dinámicas, validación en tiempo real, etc.).
+    * 👉 Puedes leer la explicación [**ACÁ**][1].
 2. **Utilizar variables simples y sentencias condicionales para resolver un problema básico**  
-Implementa una funcionalidad en la que el usuario pueda agregar tareas a una lista y, al intentar agregar una tarea vacía, se
-muestre un mensaje de advertencia.
+Implementa una funcionalidad en la que el usuario pueda agregar tareas a una lista y, al intentar agregar una tarea vacía, se muestre un mensaje de advertencia.
     * Deberás usar variables para almacenar las tareas y las acciones que se realizarán en la lista.
     * Utiliza sentencias condicionales (`if-else`) para verificar si el Usuario intenta agregar una tarea vacía.
 3. **Utilizar arreglos y sentencias iterativas para mostrar y gestionar las tareas**  
 En tu aplicación, deberás almacenar las tareas en un arreglo y luego mostrarlas dinámicamente en la página.  
-    * Usa sentencias iterativas como `for` o `forEach` para recorrer el arreglo de tareas y mostrar cada una en la interfaz.
+    * 👍 Usa sentencias iterativas como `for` o `forEach` para recorrer el arreglo de tareas y mostrar cada una en la interfaz.
     * Implementa la capacidad de eliminar tareas de la lista al hacer clic en ellas. Esto requerirá recorrer el arreglo y actualizarlo correctamente.
 4. **Codificar una solución utilizando funciones para modularizar el código**  
 Organiza tu código en varias **funciones** que se encarguen de tareas específicas. Algunas de las funciones podrían ser:
     * `agregarTarea()` - Función que añade una nueva tarea.
     * `eliminarTarea()` - Función que elimina una tarea de la lista.
-    * `mostrarTareas()` - Función que muestra todas las tareas en la interfaz.
+    * 👍`mostrarTareas()` - Función que muestra todas las tareas en la interfaz.
 
 5. **Utilizar objetos preconstruidos del lenguaje JavaScript para resolver un problema**  
 En tu aplicación, deberás hacer uso de al menos un **objeto preconstruido** de JavaScript, como:
-    * `Date` - para mostrar la fecha actual cuando se agrega una tarea.
-    * `Math` - para generar un número aleatorio como identificador único de cada tarea.
+    * 👍`Date` - para mostrar la fecha actual cuando se agrega una tarea.
+    * 👍`Math` - para generar un número aleatorio como identificador único de cada tarea.
 
 6. **Gestionar el código fuente con Git y GitHub**  
 Organiza el código en un repositorio de GitHub siguiendo las buenas prácticas:  
-    * Asegúrate de tener un historial de commits claros y bien definidos.
-    * Utiliza una estructura ordenada para el proyecto (separación de archivos HTML, CSS, JS).
-    * Incluye un archivo `README.md` con una descripción clara del proyecto, cómo ejecutar el código, y las tecnologías`utilizadas.
+    * 👍 Asegúrate de tener un historial de commits claros y bien definidos.
+    * 👍 Utiliza una estructura ordenada para el proyecto (separación de archivos HTML, CSS, JS).
+    * 👍 Incluye un archivo `README.md` con una descripción clara del proyecto, cómo ejecutar el código, y las tecnologías`utilizadas.
 
 ## PRODUCTO ESPERADO
 Tu proyecto debe contener los siguientes elementos:  
@@ -70,16 +69,18 @@ Tu proyecto debe contener los siguientes elementos:
 El esquema elegido para la tarea es el siguiente:
 ```Js
 {
-  creationDate,     // Fecha de creación de la tarea
-  task,             // Cuerpo de la tarea. Texto plano por ahora
-  important,        // Podría ser para mostrar un indicador visual
-  color,            // Para darles colores distintos/categorías
-  done,             // Para marcar si está completada
-  deadline,         // Para crear una fecha límite
-  id,               // Id para la tarea. Math.random 1000000-9999999
-  detail,           // Para un detalle sobre la tarea (expanded features)
-  tags              // Un arreglo de etiquetas (expanded features)
+  color,            // String   : Para darles colores distintos/categorías
+  creationDate,     // Date     : Fecha de creación de la tarea
+  deadline,         // Date     : Para crear una fecha límite
+  detail,           // Date     : Para detalles sobre la tarea (expanded features)
+  done,             // Date     : Para marcar si está completada
+  id,               // UUID()   : Id para la tarea. Math.random 1000000-9999999
+  important,        // Boolean  : Podría ser para mostrar un indicador visual
+  state,            // String   : ENUM-like, SAVED, SAVING, FOCUSED, DELETED, ARCHIVED, etc
+  tags              // String[] : Un arreglo de etiquetas (expanded features)
+  task,             // String   : Cuerpo de la tarea. Texto plano por ahora
 }
+
 ```
 
 De todas las anteriores, la más importante es `task.task` porque contiene el cuerpo mismo de la tarea y debe validarse que esté vacío al crearse.
@@ -127,7 +128,22 @@ Su rol en el navegador es ser una capa intermedia entre un programador y el usua
 
 ## 🧰 UTILIDADES
 
-* [][6]
+### Commit pendiente
+
+- add: proyecto base funcionando
+- se crea frontend y verifica carga de tarjetas
+- se verifica funcionamiento del almacenamiento en localStorage
+- se deciden estilos y arquitectura base del cliente
+- se implementa funcionalidad de fecha "amigable"
+- se ha utilizado `Date()` extensivamente para crear fechas pero,
+- se ha utilizado `self.crypto.randomUUID()` para crear los `id`'s.
+- se utiliza `Math` para evaluar lógica presentacional (acomodar tarjetas) y crear tareas ficticias de ejemplo para la primera vez que el usuario carga la página.
+
+### TODO's:
+
+- Implementar método para agregar tarea **(4.1 - 2.1)** validando cuando intente crear una vacía **(2.2)**.
+- Implementar método para eliminar tarjetas **(4.2 - 3.2)** refrescando la vista.
+
 
 <!-- Enlaces referenciados arriba -->
 [0]:./assets/utils/mockup.png
@@ -138,3 +154,27 @@ Su rol en el navegador es ser una capa intermedia entre un programador y el usua
 [5]:
 [6]:
 
+**TABLA DE CLASES PARA BACKGROUNDS**
+| Hex Code Data  | class                   |
+|----------------|-------------------------|
+| `#FAF3DD`      | .task-card--honey       |
+| `#DCE3C5`      | .task-card--sage        |
+| `#C3E8BD`      | .task-card--honeydew    |
+| `#B7D6E8`      | .task-card--sky         |
+| `#EAD7C3`      | .task-card--peach       |
+| `#F8C8DC`      | .task-card--rose        |
+
+**TEMPORAL DE DESARROLLO**
+```
+sass/
+│
+├── abstracts/       // 💡 Variables, functions, mixins, and helpers
+├── base/            // 🎨 Reset, typography, and base element styles
+├── components/      // 🧩 Buttons, cards, widgets — UI micro pieces
+├── layout/          // 🧱 Header, footer, sidebar, grid system
+├── pages/           // 📄 Page-specific styles (e.g., home.scss, about.scss)
+├── themes/          // 🌗 Theme-specific overrides
+├── vendors/         // 🛠️ Third-party styles (Bootstrap, jQuery UI, etc.)
+│
+└── main.scss        // 🚀 Manifest file that ties everything together
+```

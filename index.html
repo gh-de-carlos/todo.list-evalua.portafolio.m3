@@ -6,20 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Carlos Pizarro Morales">
     <meta name="description" content="Actividad aeN1 individual del módulo N2 del curso Full Stack con Skillnest.">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,200,0,0&icon_names=cancel,check_circle,settings&display=block">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="icon" href="favicon.png" type="image/png">
-
+    <script src="https://kit.fontawesome.com/d4e102f18b.js" crossorigin="anonymous"></script>
     <script type="module" src="./assets/js/main.js"></script>
-
     <title>8Fold-ToDO</title>
   </head>
 
   <body>
-  </body>
+    
+    <header>
+      <h1>Todo</h1>
+    </header>
 
-</html>
+    <main class="dashboard" id="dashboard">     
+    </main> <!-- end of `.dashboard` Don't touch this line! 😠 -->
+    
+    <footer>
+      <p>Hecho con <i class="fa-solid fa-heart"></i> amor po!</p>
+    </footer>
+
+    <!------------- TEMPLATE PARA EDICIÓN ------------->
+    <!------- ESTE TEMPLATE NO ES SEGURO AÚN ---------->
+    <template>
+      <div class="edit-mode">
+        <textarea name="" id="" cols="25" rows="5" placeholder="edita acá..."></textarea>
+      </div>
+    </template>
+    <!-------------    MENÚ CONTEXTUAL    ------------->
+    <!--- POSICIONADO ABSOLUTAMENTE A TRAVÉS DE JS ---->
+    <div id="custom-menu">
+      <p class="custom-menu__item">Editar</p>
+      <p class="custom-menu__item">¡Está lista!</p>
+      <p class="custom-menu__item">Es importante</p>
+      <p class="custom-menu__item">Agregar deadline</p>
+      <p class="custom-menu__item">Elegir color</p>
+    </div>
+    <!------------- TEMPLATE DE LAS CARDS ------------->
+    <!------------- UTILIZADO POR APP.JS  ------------->
+    <template id="task-template">
+      <article class="task-card" id="">
+        <p class="card-options card-header"><i class="fa-solid fa-ellipsis"></i></p>
+        <span class="card-body"></span>
+        <p class="card-options card-footer"></p>
+      </article>
+    </template>
+
+  </body>
+  
+  </html>

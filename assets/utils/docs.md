@@ -39,16 +39,16 @@ La funcionalidad básica será poder crear tareas que tienen por cuerpo principa
 
 ```Js
 {
-  color,            // Para darles colores distintos/categorías
-  creationDate,     // Fecha de creación de la tarea
-  deadline,         // Para crear una fecha límite
-  detail,           // Para detalles sobre la tarea (expanded features)
-  done,             // Para marcar si está completada
-  id,               // Id para la tarea. Math.random 1000000-9999999
-  important,        // Podría ser para mostrar un indicador visual
-  state,            // ENUM-like, SAVED, SAVING, FOCUSED, DELETED, ARCHIVED, etc
-  tags              // Un arreglo de etiquetas (expanded features)
-  task,             // Cuerpo de la tarea. Texto plano por ahora
+  color,            // string   : Para darles colores distintos/categorías
+  creationDate,     // Date     : Fecha de creación de la tarea
+  deadline,         // Date     : Para crear una fecha límite
+  detail,           // Date     : Para detalles sobre la tarea (expanded features)
+  done,             // Date     : Para marcar si está completada
+  id,               // UUID()   : Id para la tarea. Math.random 1000000-9999999
+  important,        // boolean  : Podría ser para mostrar un indicador visual
+  state,            // string   : ENUM-like, SAVED, SAVING, FOCUSED, DELETED, ARCHIVED, etc
+  tags              // string[] : Un arreglo de etiquetas (expanded features)
+  task,             // string   : Cuerpo de la tarea. Texto plano por ahora
 }
 ```
 

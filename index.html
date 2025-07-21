@@ -17,18 +17,14 @@
   </head>
 
   <body>
-    
     <header>
       <h1>Todo</h1>
     </header>
-
-    <main class="dashboard" id="dashboard">     
+    <main class="dashboard" id="dashboard">
     </main> <!-- end of `.dashboard` Don't touch this line! 😠 -->
-    
     <footer>
       <p>Hecho con <i class="fa-solid fa-heart"></i> amor po!</p>
     </footer>
-
     <!------------- TEMPLATE PARA EDICIÓN ------------->
     <!------- ESTE TEMPLATE NO ES SEGURO AÚN ---------->
     <template>
@@ -37,7 +33,6 @@
       </div>
     </template>
     <!-------------    MENÚ CONTEXTUAL    ------------->
-    <!--- POSICIONADO ABSOLUTAMENTE A TRAVÉS DE JS ---->
     <div id="custom-menu">
       <p class="custom-menu__item" id="menu_edit">Editar</p>
       <p class="custom-menu__item" id="menu_done">¡Está lista!</p>
@@ -47,7 +42,6 @@
       <p class="custom-menu__item" id="menu_remove">Eliminar</p>
     </div>
     <!------------- TEMPLATE DE LAS CARDS ------------->
-    <!------------- UTILIZADO POR APP.JS  ------------->
     <template id="task-template">
       <article class="task-card" id="">
         <p class="card-options card-header"><i class="fa-solid fa-ellipsis"></i></p>
@@ -55,7 +49,24 @@
         <p class="card-options card-footer"></p>
       </article>
     </template>
-
+    <!------------ TEMPLATE DEL FORMULARIO ------------>
+    <template class="modal-create">
+      <form action="">
+        <label>Tarea <textarea type="text"></textarea></label>
+        <label>¿Destacar como importante? <input type="checkbox" name="" id=""></label>
+        <label>¿Poner límite?<input type="datetime-local" name="" id=""></label>
+        <fieldset class="color-selector">
+          <legend>Elige un color</legend>
+          <label class="rose" for=""><input type="radio" name="color" value="rose"></label>
+          <label class="sage" for=""><input type="radio" name="color" value="sage"></label>
+          <label class="honey" for=""><input type="radio" name="color" value="honey"></label>
+          <label class="sky" for=""><input type="radio" name="color" value="sky"></label>
+          <label class="peach" for=""><input type="radio" name="color" value="peach"></label>
+          <label class="honeydew" for=""><input type="radio" name="color" value="honeydew"></label>
+        </fieldset>
+        <input type="submit" value="Crear">
+      </form>
+    </template>
   </body>
-  
-  </html>
+
+</html>

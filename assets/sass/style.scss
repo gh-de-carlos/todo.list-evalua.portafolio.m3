@@ -17,7 +17,8 @@
 // 4. Components (reusable chunks)
 @use 'components/custom-menu';
 @use 'components/task-card';
-// @use 'components/cards';
+@use 'components/new-card';
+@use 'components/form';
 
 // 5. Pages (single-view styles)
 // @use 'pages/home';

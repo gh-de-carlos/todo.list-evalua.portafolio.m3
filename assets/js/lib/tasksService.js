@@ -59,4 +59,42 @@ function deleteTask(id) {
   app.render(refreshed);
 }
 
-export default { init, deleteTask };
+function createTask(event) {
+  console.log('Acá va la creación de una nueva tarea');
+  // TODO esta f(x) debe ser refactorizada para evitar dependencias circulares
+  
+  const template = document.querySelector('.modal-create');
+  const modalContent = template.content.cloneNode(true);
+  console.log(modalContent);
+
+  // Wrap it in a modal container
+  const modalWrapper = document.createElement('div');
+  modalWrapper.classList.add('modal-overlay'); // Should match your CSS class
+  modalWrapper.setAttribute('role', 'dialog');
+  modalWrapper.setAttribute('aria-modal', 'true');
+
+  // Insert cloned content
+  modalWrapper.appendChild(modalContent);
+
+  // Add a close button (optional)
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = '×';
+  closeBtn.classList.add('modal-close');
+  closeBtn.addEventListener('click', () => modalWrapper.remove());
+  modalWrapper.appendChild(closeBtn);
+
+  // Append to body
+  document.body.appendChild(modalWrapper);
+
+  // Optional: close on ESC key or click outside
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') modalWrapper.remove();
+  });
+
+  modalWrapper.addEventListener('click', (e) => {
+    if (e.target === modalWrapper) modalWrapper.remove();
+  });
+}
+
+
+export default { init, deleteTask, createTask };

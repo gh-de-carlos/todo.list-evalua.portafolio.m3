@@ -9,7 +9,6 @@ function tiltCard(card) {
   const isTilt = Math.random() > 0.2 ? true : false;
   if (isTilt) absTiltDeg = Math.floor(Math.random() * 10-5+1)+3;
   let tiltDeg = Math.round(Math.random()) === 0 ? absTiltDeg * -1 : absTiltDeg;
-  // console.log(tiltDeg);    // TODO  remove console.log
   card.style.transform = `rotate(${tiltDeg}deg)`;
 }
 
@@ -46,7 +45,8 @@ function selectBg(hexColor) {
  */
 function showMenu(e, menu) {
   const card = e.target.closest('.task-card');
-  if (card) {
+  const isNew = card.classList.contains('new-card');
+  if (card && !isNew) {
     e.preventDefault();
     menu.style.left = `${e.clientX}px`;
     menu.style.top = `${e.clientY}px`;

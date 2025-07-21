@@ -1,0 +1,22 @@
+.new-card {
+  justify-content: center;
+  align-items: center;
+  transition: 700ms linear all;
+}
+
+.new-card__img {
+  width: 50%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.new-card__img:hover {
+  border-radius: 50%;
+  box-shadow: 0 0 16px 2px rgb(229, 255, 221);
+  scale: 0.9;
+}
+
+.new-card__img:active {
+  scale: 0.8;
+  box-shadow: 0 0 16px 6px rgb(147, 248, 122);
+}

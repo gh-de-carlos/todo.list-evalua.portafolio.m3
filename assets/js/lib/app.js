@@ -1,11 +1,13 @@
 import friendlyDateFormatter from "../util/friendlyDateFormatter.js";
 import { tiltCard, selectBg, showMenu, debounceMenu } from "../util/microTools.js";
 import { handleOptions } from "./ctxMenu.js";
+import tasksService from "./tasksService.js";
 
 // locales
 const dashboard = document.querySelector('#dashboard');
 const template = document.querySelector('#task-template');
 const menu = document.querySelector('#custom-menu');
+let newCard = null;
 const TIMERS = {
   timoutMenuDebouncer: null,
   mouseLeaveDelay: 800,
@@ -13,7 +15,7 @@ const TIMERS = {
 
 /**
  * Función encargada de orquestar la creación de las tarjetas
- * y agregar sus listeners.
+ * y agregar sus listeners. Se utiliza la api Template
  * 
  * @param { Array } tasks - el arreglo con la data de toda las tareas
 */
@@ -21,8 +23,13 @@ function render(tasks) {
   dashboard.innerHTML = "";
   // TODO crear lógica de resiliencia
   
+  const clone = template.content.cloneNode(true).querySelector('.task-card');
+  clone.classList.add('new-card');
+  clone.innerHTML = '<img src="./assets/img/new-card.svg" class="new-card__img"/ title="📝 nueva tarea 😍">';
+  clone.addEventListener('click', tasksService.createTask);
+  dashboard.appendChild(clone);
+
   tasks.forEach(task => {
-    // crear cards a usando Template.clone API
     const clone = template.content.cloneNode(true);
     clone.querySelector('.task-card').id = task.id;
     clone.querySelector('.card-body').textContent = task.task;

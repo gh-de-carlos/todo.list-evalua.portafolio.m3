@@ -28,12 +28,12 @@ Implementa una funcionalidad en la que el usuario pueda agregar tareas a una lis
 3. **Utilizar arreglos y sentencias iterativas para mostrar y gestionar las tareas**  
 En tu aplicación, deberás almacenar las tareas en un arreglo y luego mostrarlas dinámicamente en la página.  
     * 👍 Usa sentencias iterativas como `for` o `forEach` para recorrer el arreglo de tareas y mostrar cada una en la interfaz.
-    * Implementa la capacidad de eliminar tareas de la lista al hacer clic en ellas. Esto requerirá recorrer el arreglo y actualizarlo correctamente.
+    * 👍 Implementa la capacidad de eliminar tareas de la lista al hacer clic en ellas. Esto requerirá recorrer el arreglo y actualizarlo correctamente.
 4. **Codificar una solución utilizando funciones para modularizar el código**  
 Organiza tu código en varias **funciones** que se encarguen de tareas específicas. Algunas de las funciones podrían ser:
     * `agregarTarea()` - Función que añade una nueva tarea.
-    * `eliminarTarea()` - Función que elimina una tarea de la lista.
-    * 👍`mostrarTareas()` - Función que muestra todas las tareas en la interfaz.
+    * 👍 `eliminarTarea()` - Función que elimina una tarea de la lista.
+    * 👍 `mostrarTareas()` - Función que muestra todas las tareas en la interfaz.
 
 5. **Utilizar objetos preconstruidos del lenguaje JavaScript para resolver un problema**  
 En tu aplicación, deberás hacer uso de al menos un **objeto preconstruido** de JavaScript, como:
@@ -130,11 +130,14 @@ Su rol en el navegador es ser una capa intermedia entre un programador y el usua
 
 ### Commit pendiente
 
-- refactor: refactoriza completamente el css para modularizar.
-- add: Se crea assets/js/lib/ctxMenu.js para gestionar las opciones del menú a través de la función `handleOptions(event, menu)` haciendo uso de `assets/js/lib/tasksService.js`
-- refactor: se refactoriza `assets/js/util/microTools.js` para crear una sola función `showMenu(event, menu)` sin microdependencias.
-- add: se crea `deleteTask(id)` en `assets/js/util/tasksService.js` para gestionar la eliminación y actualización del localStorage además de solicitar el repintado de la vida a través de `app.js:render()`
-- fix: app.render() que no limpia el dashboard antes de repintar
+- add: se agrega html del formulario para crear tarea
+- refactor: se modifica la grilla para presentar 4 columnas en vez de 5
+- se agrega el scss/components/new-card, components/scss/form
+- chore: limpieza de código muerto en sass/components/task-card
+- chore: limpiza de código muerto en js/util/microTools.js
+- add: se crea createTask(data) en js/lib/tasksService.js encargado de levantar el modal. 
+- se agrega console.log() en js/lib/ctxMenu.js
+- add: se crea código que inserta primero la tarjeta de "crear nueva tarea" dentro de render()
 
 ### PENDIENTES:
 - TODO Implementar método para agregar tarea **(4.1 - 2.1)** validando cuando intente crear una vacía **(2.2)**.

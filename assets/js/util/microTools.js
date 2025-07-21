@@ -42,27 +42,18 @@ function selectBg(hexColor) {
  * `dblclick` en cualquier lugar de una tarjeta.
  * 
  * @param { object } e - el objeto event
+ * @param { object } menu - el objeto del elemento menu (DOM)
  */
-function showMenu(e) {
+function showMenu(e, menu) {
   const card = e.target.closest('.task-card');
   if (card) {
     e.preventDefault();
-    showOptionsMenu({
-      x: e.clientX,
-      y: e.clientY,
-      cardId: card.dataset.id,
-    });
+    menu.style.left = `${e.clientX}px`;
+    menu.style.top = `${e.clientY}px`;
+    menu.style.display = 'block';
+    menu.dataset.cardId = card.id;
+    menu.querySelector('#menu_remove').dataset.cardId = card.id;
   }
-}
-
-// TODO refactorizar esta función para incluir la lógica dentro
-// de showMenu()
-function showOptionsMenu({ x, y, cardId }) {
-  const menu = document.querySelector('#custom-menu');
-  menu.style.left = `${x}px`;
-  menu.style.top = `${y}px`;
-  menu.style.display = 'block';
-  menu.dataset.cardId = cardId;
 }
 
 /**
@@ -72,7 +63,7 @@ function showOptionsMenu({ x, y, cardId }) {
  * provoquen su cierre inmediato, mejorando la experiencia de
  * usuario. 
  * 
- * @param { object | null } timer - referencia a un objeto setTimout. null si no existe
+ * @param { number } timer - referencia a un setTimout.
  * @param { currentTarget } menu - objeto event.currentTarget
  * @param { number } delay - valor en milisegundos del delay para debounce
  */
@@ -83,7 +74,6 @@ function debounceMenu(timer, menu, delay) {
   }, delay);
   
   menu.addEventListener('mouseenter', () => {
-    console.log(timer)
     if (timer) clearTimeout(timer);
   })
 }

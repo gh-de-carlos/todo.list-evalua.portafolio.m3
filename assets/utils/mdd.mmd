@@ -1,0 +1,11 @@
+graph TD
+  main["📄 main.scss"]
+  mixins["🧵 _mixins.scss"]
+  grid["📐 _grid.scss"]
+  button["🔘 _button.scss"]
+
+  main --> mixins
+  main --> grid
+  main --> button
+  grid --> mixins
+  button --> mixins

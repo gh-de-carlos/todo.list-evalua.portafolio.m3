@@ -1,0 +1,5 @@
+@use '../abstracts/mixins';
+
+header {
+  @include mixins.headfoot;
+}

@@ -67,9 +67,9 @@
 // })
 
 // // editar en el contenido mismo.
-// const tasks = document.querySelectorAll('.card-body');
-// tasks.forEach(task => task.addEventListener('dblclick', editMode));
+const tasks = document.querySelectorAll('.card-body');
+tasks.forEach(task => task.addEventListener('dblclick', editMode));
 
-// function editMode(e) {
-//   e.currentTarget.contentEditable = 'true'; 
-// }
+function editMode(e) {
+  e.currentTarget.contentEditable = 'true'; 
+}

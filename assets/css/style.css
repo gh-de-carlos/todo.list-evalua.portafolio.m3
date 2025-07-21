@@ -14,7 +14,7 @@ body {
   font-family: "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-header, footer {
+header {
   margin: 0;
   color: white;
   text-align: center;
@@ -31,6 +31,41 @@ header, footer {
   border-radius: 8px;
   margin: 0 auto;
   max-width: 900px;
+}
+
+footer {
+  margin: 0;
+  color: white;
+  text-align: center;
+  height: 50px;
+}
+
+#custom-menu {
+  position: absolute;
+  z-index: 1000;
+  background: crimson;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: none;
+  width: 140px;
+  height: fit-content;
+}
+
+.custom-menu__item {
+  font-size: 0.8rem;
+  padding: 0.25rem;
+}
+
+.custom-menu__item:hover {
+  position: relative;
+  z-index: 1001;
+  background-color: white;
+  color: crimson;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  box-shadow: 0 0 2px 2px white;
 }
 
 .task-card, .edit-mode {
@@ -96,22 +131,7 @@ header, footer {
   font-size: 1rem;
 }
 
-/* SOLO PARA EDITOR */
-.textarea {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  /*   width: 200px; */
-  /*   height: fit-content; */
-  resize: none;
-  padding: 1rem;
-  font-size: 1.125rem;
-  box-shadow: 0 0 4px 4px #ff0000aa;
-  border-radius: 8px;
-}
-
-/* MENU CONTEXTUAL */
-/* background color user-choosen */
+/* user-chosen card background color  */
 .task-card--rose {
   background-color: #F8C8DC;
 }
@@ -136,37 +156,9 @@ header, footer {
   background-color: #EAD7C3;
 }
 
-/* default color not meant to be chosen */
+/* default color */
 .task-card--yellow {
   background-color: #F1DF00;
-}
-
-#custom-menu {
-  position: absolute;
-  z-index: 1000;
-  background: crimson;
-  color: white;
-  padding: 0.5rem;
-  border-radius: 4px;
-  display: none;
-  width: 140px;
-  height: fit-content;
-}
-
-.custom-menu__item {
-  font-size: 0.8rem;
-  padding: 0.25rem;
-}
-
-.custom-menu__item:hover {
-  position: relative;
-  z-index: 1001;
-  background-color: white;
-  color: crimson;
-  text-transform: uppercase;
-  font-weight: 700;
-  border-radius: 4px;
-  box-shadow: 0 0 2px 2px white;
 }
 
 /*# sourceMappingURL=style.css.map */

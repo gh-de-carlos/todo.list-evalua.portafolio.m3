@@ -130,19 +130,13 @@ Su rol en el navegador es ser una capa intermedia entre un programador y el usua
 
 ### Commit pendiente
 
-- Refactoriza app.js para modularizar utilidades y limpiar el código:
-    - se crea js/util/ y los archivos: friendlyDateFormatter.js, microTools.js
-    - se mueve el código de tiltCard y selectBg a microTools.js
-    - friendlyDateFormatter es una copia de la utilidad en mis scripts personales.
-    - se mueven funciones que lanzan el menú contextual showMenu a microTools.js
-    - solo se dejan en app: el contexto local, DOM, render y los listeners necesarios
-- Se comenta appDraft.js y se mueve a assets/utils/
-- Se agregan estilos al menú contextual
-- Se corrige el evento click sobre el menú elipsis.
-- Se agregan `id`'s a las opciones del menú para crear la funcionalidad.
+- refactor: refactoriza completamente el css para modularizar.
+- add: Se crea assets/js/lib/ctxMenu.js para gestionar las opciones del menú a través de la función `handleOptions(event, menu)` haciendo uso de `assets/js/lib/tasksService.js`
+- refactor: se refactoriza `assets/js/util/microTools.js` para crear una sola función `showMenu(event, menu)` sin microdependencias.
+- add: se crea `deleteTask(id)` en `assets/js/util/tasksService.js` para gestionar la eliminación y actualización del localStorage además de solicitar el repintado de la vida a través de `app.js:render()`
+- fix: app.render() que no limpia el dashboard antes de repintar
 
 ### PENDIENTES:
-- TODO Implementar método para eliminar tarjetas **(4.2 - 3.2)** refrescando la vista.
 - TODO Implementar método para agregar tarea **(4.1 - 2.1)** validando cuando intente crear una vacía **(2.2)**.
 
 

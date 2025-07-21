@@ -1,4 +1,7 @@
 import { importedTasks } from "./db.js";
+import app from "./app.js";
+
+const KEY = 'todo8fold';
 
 /**
  * Función que inicializa el estado de la aplicación buscando
@@ -10,12 +13,12 @@ import { importedTasks } from "./db.js";
  * de la gestión y persistencia de las tareas.
  */
 function init() {
-  const key = 'todo8fold';
-  const storedTasks = readFromStorage(key);
-
+  const storedTasks = readFromStorage(KEY);
+  
   if (!storedTasks) {
-    saveToStorage(key, importedTasks);
-    return importedTasks;
+    saveToStorage(KEY, importedTasks);
+    const storedTasks = readFromStorage(KEY);
+    return storedTasks;
   }
 
   return storedTasks;
@@ -46,5 +49,14 @@ function saveToStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+function deleteTask(id) {
+  const stored = readFromStorage(KEY);
+  if (!stored) throw new Error("💥 Esto nunca debería haber sucedido. Revisar esta parte del código ⚠️");
+  
+  const transientStored = stored.filter(task => task.id !== id);
+  saveToStorage(KEY, transientStored);
+  const refreshed = readFromStorage(KEY);
+  app.render(refreshed);
+}
 
-export default { init };
+export default { init, deleteTask };

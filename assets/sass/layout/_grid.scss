@@ -1,0 +1,11 @@
+.dashboard {
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+  grid-template-rows: repeat(5, 1fr); 
+  gap: var(--gap); 
+  background-color: #cca83cee;
+  padding: 50px;
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 900px;
+}

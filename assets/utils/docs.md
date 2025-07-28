@@ -216,8 +216,68 @@ uiDecorator.applyStateStyles()
 // Crear un uuid.v4 sin librerías
 self.crypto.uuid();
 ```
+
+
+## TODO
+
+```Js
+// In-place editing mode.
+const tasks = document.querySelectorAll('.card-body');
+tasks.forEach(task => task.addEventListener('dblclick', editMode));
+
+function editMode(e) {
+  e.currentTarget.contentEditable = 'true'; 
+}
+```
+**OPCIONES DEL MENÚ CONTEXTUAL**
+```html
+<div id="custom-menu">
+    <p class="custom-menu__item" id="menu_edit">Editar</p>
+    <p class="custom-menu__item" id="menu_done">¡Está lista!</p>
+    <p class="custom-menu__item" id="menu_important">Es importante</p>
+    <p class="custom-menu__item" id="menu_timer">Agregar timer</p>
+    <p class="custom-menu__item" id="menu_color">Elegir color</p>
+    <p class="custom-menu__item" id="menu_remove">Eliminar</p>
+</div>
+```
+
+**TABLA DE CLASES PARA BACKGROUNDS**
+| Hex Code Data  | class                   |
+|----------------|-------------------------|
+| `#FAF3DD`      | .task-card--honey       |
+| `#DCE3C5`      | .task-card--sage        |
+| `#C3E8BD`      | .task-card--honeydew    |
+| `#B7D6E8`      | .task-card--sky         |
+| `#EAD7C3`      | .task-card--peach       |
+| `#F8C8DC`      | .task-card--rose        |
+
+**TEMPORAL DE DESARROLLO**
+```
+sass/
+│
+├── abstracts/       // 💡 Variables, functions, mixins, and helpers
+├── base/            // 🎨 Reset, typography, and base element styles
+├── components/      // 🧩 Buttons, cards, widgets — UI micro pieces
+├── layout/          // 🧱 Header, footer, sidebar, grid system
+├── pages/           // 📄 Page-specific styles (e.g., home.scss, about.scss)
+├── themes/          // 🌗 Theme-specific overrides
+├── vendors/         // 🛠️ Third-party styles (Bootstrap, jQuery UI, etc.)
+│
+└── main.scss        // 🚀 Manifest file that ties everything together
+```
+
+### Commit pendiente
+
+
+
+-------------------------------------------------------------------
+                                LINKS
 -------------------------------------------------------------------
 [0]:#gestión-y-ciclo-de-vida-de-tareas
+
+
+-------------------------------------------------------------------
+                            ESTILOS CUSTOM
 -------------------------------------------------------------------
 <style>
   body {

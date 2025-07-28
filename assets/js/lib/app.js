@@ -9,8 +9,8 @@ const template = document.querySelector('#task-template');
 const menu = document.querySelector('#custom-menu');
 let newCard = null;
 const TIMERS = {
-  timoutMenuDebouncer: null,
-  mouseLeaveDelay: 800,
+  TIMEOUT_MENU_DEBOUNCER: null,
+  MOUSE_LEAVE_DELAY: 800,
 }
 
 /**
@@ -52,7 +52,7 @@ document.addEventListener('click', event => {
 });
 dashboard.addEventListener('contextmenu', (e) => { showMenu(e, menu) });
 menu.addEventListener('mouseleave', (event) => {
-  debounceMenu(TIMERS.timoutMenuDebouncer, event.currentTarget, TIMERS.mouseLeaveDelay)
+  debounceMenu(TIMERS.TIMEOUT_MENU_DEBOUNCER, event.currentTarget, TIMERS.MOUSE_LEAVE_DELAY)
 })
 menu.addEventListener('click', (e) => { handleOptions(e, menu)});
 
